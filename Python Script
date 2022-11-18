@@ -1,1 +1,36 @@
+                                                                  Develop a python script
+Team ID :	PNT2022TMID43421 
+Project Name :	 IoT Based Safety Gadget For Child Safety Monitoring & Notification 
+Maximum Marks :	2 Marks 
+
+
+
+import json
+import iot
+import time
+myconfig = {
+
+    "identity":{
+        "orgId": "8xt2ko",
+        "typeId": "01device",
+        "device":"8072"
+    },
+    "auth": {
+        "token":"123456789"
+    }
+}
+client=wiotp.sdk.device.DeviceClient(config=myconfig, logHandlers=None)
+client.connect()
+
+while True:
+    name="Karthick"
+    latitude= 10.809384
+    longitude=77.010691
+    myData={'name': name, 'lat':latitude, 'lon':longitude}
+    client.publishEvent (eventId="status", msgFormat="json", data=myData, qos=0, onPublish=None)
+    print("Data published to IBM IoT platform:",myData)
+    time.sleep(5)
+
+client.disconnect()
+
 
